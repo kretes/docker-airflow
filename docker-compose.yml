@@ -22,8 +22,8 @@ rabbitmq:
 webserver:
     image: puckel/docker-airflow
     restart: always
-    # volumes:
-    #     - /localpath/to/dags:/usr/local/airflow/dags
+    volumes:
+         - ./dags:/usr/local/airflow/dags
     environment:
         - AIRFLOW_HOME=/usr/local/airflow
     ports:
@@ -49,6 +49,8 @@ flower:
 scheduler:
     image: puckel/docker-airflow
     restart: always
+    volumes:
+        - ./dags:/usr/local/airflow/dags
     environment:
         - AIRFLOW_HOME=/usr/local/airflow
     links:
@@ -59,6 +61,8 @@ scheduler:
 worker:
     image: puckel/docker-airflow
     restart: always
+    volumes:
+        - ./dags:/usr/local/airflow/dags
     environment:
         - AIRFLOW_HOME=/usr/local/airflow
     ports:
